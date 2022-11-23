@@ -21,4 +21,6 @@ def get_smile(user_data):
     return user_data['emoji']
 
 def main_keyboard():
-    return ReplyKeyboardMarkup([['Прислать котика', KeyboardButton('Мои координаты' , request_location = True)]])
+    return ReplyKeyboardMarkup([
+        ['Прислать котика', KeyboardButton('Мои координаты' , request_location = True), 'Заполнить анкету']
+        ])
