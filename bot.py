@@ -4,7 +4,7 @@ import settings
 from anketa import anketa_start, anketa_name, anketa_rating, anketa_skip, anketa_comment, anketa_dontknow
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, ConversationHandler
 from handlers import (greet_user, talk_to_me, user_coordinates, send_cat_pictures,
-                      guess_number)
+                      guess_number, word_count)
 
 logging.basicConfig(filename='bot.log', level=logging.INFO, encoding='utf-8')
 
@@ -33,6 +33,7 @@ def main():
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(CommandHandler('guess', guess_number))
     dp.add_handler(CommandHandler('cat', send_cat_pictures))
+    dp.add_handler(CommandHandler('word_count', word_count))
     dp.add_handler(MessageHandler(Filters.regex('^(Прислать котика)$'), send_cat_pictures))
     dp.add_handler(MessageHandler(Filters.location, user_coordinates))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))

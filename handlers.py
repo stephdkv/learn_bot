@@ -6,7 +6,9 @@ def greet_user(update, context):
     print('Вызван /start')
     context.user_data['emoji'] = get_smile(context.user_data)
     update.message.reply_text(
-        f"Здравствуй, пользователь!{context.user_data['emoji']}",
+        f"Здравствуй, пользователь!{context.user_data['emoji']} \
+\nНаберите /guess и введите число, чтобы сыграть в игру. \
+\nНаберите /word_count и введите предложение, чтобы посчитать слова в нём. ",
         reply_markup = main_keyboard()
         )
 
@@ -41,3 +43,14 @@ def user_coordinates(update, context):
         f"Ваши координаты {coordinates} {context.user_data['emoji']}",
         reply_markup = main_keyboard()
     )
+
+def word_count(update, context):
+    user_sentence = update.message.text
+    if user_sentence == '/word_count':
+        return update.message.reply_text (
+        f'Введите предложение!'
+        )
+    user_sentence = user_sentence.split(' ')
+    update.message.reply_text (
+        f'В вашем предложении {len(user_sentence)} слов.'
+        )
